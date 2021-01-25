@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap");
+
 .App {
   text-align: center;
 }
@@ -35,4 +37,27 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.todo-list {
+  display: flex;
+  flex-flow: row wrap;
+  list-style-type: none;
+  justify-content: space-between;
+  width: 90%;
+}
+
+.todo-item {
+  width: 250px;
+  height: 100px;
+  box-shadow: 0 -3px 8px 8px rgb(255, 241, 241);
+  text-align: center;
+  border-radius: 10px;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+.title {
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 50px;
+  font-weight: 9999999;
 }
