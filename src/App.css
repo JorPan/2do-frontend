@@ -105,3 +105,22 @@ body {
 .close-button {
   background-color: rgb(211, 169, 250);
 }
+
+.signup-form {
+  display: flex;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  height: 250px;
+  margin: auto;
+  justify-content: space-between;
+  border-radius: 10px;
+  margin-bottom: 50px;
+  background-color: white;
+}
+
+.submit-button:hover {
+  background-color: rgb(48, 207, 48);
+  color: white;
+}

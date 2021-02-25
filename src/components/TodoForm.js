@@ -89,7 +89,7 @@ export default class TodoForm extends Component {
           />
         </div>
         {this.showDoneCheckbox()}
-        <input type="submit" value="Submit" />
+        <input className="submit-button" type="submit" value="Submit" />
         {this.showCloseButton()}
       </form>
     );
