@@ -4,6 +4,9 @@ import TodoContainer from "./components/TodoContainer";
 import TodoForm from "./components/TodoForm";
 import { patchTodo, postTodo, deleteTodo } from "./helpers";
 import SignUpForm from "./components/SignUpForm";
+import { Route, Switch } from "react-router-dom";
+import PrivateRoute from "./components/PrivateRoute";
+import Home from "./components/Home";
 
 const todosUrl = "http://localhost:3000/todos";
 
@@ -70,13 +73,24 @@ class App extends Component {
     return (
       <div className="App">
         <h1 className="title">2doIfy</h1>
-        <SignUpForm signUp={this.signUp} alerts={this.state.alerts} />
-        <TodoForm submitAction={this.addTodo} />
-        <TodoContainer
-          updateTodo={this.updateTodo}
-          deleteTodo={this.deleteTodo}
-          todos={this.state.todos}
-        />
+        <Switch>
+          <PrivateRoute
+            exact
+            path="/"
+            component={Home}
+            submitAction={this.addTodo}
+            updateTodo={this.updateTodo}
+            deleteTodo={this.deleteTodo}
+            todos={this.state.todos}
+          />
+          <Route
+            exact
+            path="/signup"
+            render={(routerProps) => (
+              <SignUpForm signUp={this.signUp} alerts={this.state.alerts} />
+            )}
+          />
+        </Switch>
       </div>
     );
   }
