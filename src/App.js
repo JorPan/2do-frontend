@@ -41,7 +41,8 @@ class App extends Component {
     this.setState({
       todos: [...this.state.todos, newTodo],
     });
-    postTodo(newTodo);
+    postTodo(newTodo, this.state.user);
+    window.location.reload(false);
   };
 
   updateTodo = (updatedTodo) => {
@@ -108,7 +109,7 @@ class App extends Component {
     return (
       <div className="App">
         <header>
-          {this.state.user.username ? (
+          {this.state.user ? (
             <>
               <p>Welcome Back {this.state.user.username}</p>
               <nav>
