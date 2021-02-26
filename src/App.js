@@ -4,7 +4,7 @@ import TodoContainer from "./components/TodoContainer";
 import TodoForm from "./components/TodoForm";
 import { patchTodo, postTodo, deleteTodo } from "./helpers";
 import SignUpForm from "./components/SignUpForm";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect, Link } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
 import Home from "./components/Home";
 
@@ -47,6 +47,28 @@ class App extends Component {
     deleteTodo(id);
   };
 
+  login = ({ username, password }) => {
+    return fetch("http://localhost:3000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.errors) {
+          this.setState({ alerts: response.errors });
+        } else {
+          localStorage.setItem("token", response.token);
+          this.setState({
+            user: response.user,
+            alerts: ["Successful Login!"],
+          });
+        }
+      });
+  };
+
   signUp = (user) => {
     return fetch("http://localhost:3000/users", {
       method: "POST",
@@ -72,6 +94,16 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <header>
+          {this.state.user.username ? (
+            <>
+              <p>Welcome Back {this.state.user.username}</p>
+              <nav>
+                <Link to="/signup">Logout</Link>
+              </nav>
+            </>
+          ) : null}
+        </header>
         <h1 className="title">2doIfy</h1>
         <Switch>
           <PrivateRoute
@@ -89,6 +121,7 @@ class App extends Component {
             render={(routerProps) => (
               <SignUpForm
                 {...routerProps}
+                login={this.login}
                 signUp={this.signUp}
                 alerts={this.state.alerts}
               />

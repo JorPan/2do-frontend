@@ -1,15 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function SignUpForm(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [login, setLogin] = useState(false);
 
+  useEffect(() => {
+    localStorage.removeItem("token");
+  }, []);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     let user = { username, password };
 
-    props.signUp(user).then(() => props.history.push("/"));
+    login
+      ? props.login(user).then(() => props.history.push("/"))
+      : props.signUp(user).then(() => props.history.push("/"));
   };
 
   const handleChange = ({ target }) => {
