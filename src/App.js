@@ -18,12 +18,23 @@ class App extends Component {
   };
 
   componentDidMount() {
-    this.getTodos();
+    this.authorize_user();
   }
-  getTodos = () => {
-    fetch(todosUrl)
+
+  authorize_user = () => {
+    fetch("http://localhost:3000/profile", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.token}`,
+      },
+    })
       .then((response) => response.json())
-      .then((todos) => this.setState({ todos }));
+      .then((response) => {
+        this.setState({
+          user: response.user,
+          todos: response.todos,
+        });
+      });
   };
 
   addTodo = (newTodo) => {
@@ -64,6 +75,7 @@ class App extends Component {
           this.setState({
             user: response.user,
             alerts: ["Successful Login!"],
+            todos: response.todos,
           });
         }
       });
@@ -86,6 +98,7 @@ class App extends Component {
           this.setState({
             user: response.user,
             alerts: ["User successfully created!"],
+            todos: response.todos,
           });
         }
       });
