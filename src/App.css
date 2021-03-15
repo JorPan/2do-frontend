@@ -91,7 +91,7 @@ body {
 
 .delete-button {
   color: white;
-  background-color: rgb(223, 61, 61);
+  background-color: rgb(202, 41, 41);
   margin: 1rem;
 }
 
@@ -103,17 +103,17 @@ body {
 
 .edit-button {
   color: white;
-  background-color: rgb(160, 160, 235);
+  background-color: rgb(178, 178, 245);
 }
 
 .edit-button:hover {
   cursor: pointer;
   background-color: white;
-  color: rgb(160, 160, 235);
+  color: rgb(141, 141, 207);
 }
 
 .close-button {
-  background-color: rgb(211, 169, 250);
+  background-color: rgb(201, 151, 247);
 }
 
 .signup-form {
