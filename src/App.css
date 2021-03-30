@@ -91,7 +91,7 @@ body {
 
 .delete-button {
   color: white;
-  background-color: rgb(202, 41, 41);
+  background-color: rgb(185, 40, 40);
   margin: 1rem;
 }
 
@@ -103,7 +103,7 @@ body {
 
 .edit-button {
   color: white;
-  background-color: rgb(178, 178, 245);
+  background-color: rgb(168, 168, 236);
 }
 
 .edit-button:hover {
